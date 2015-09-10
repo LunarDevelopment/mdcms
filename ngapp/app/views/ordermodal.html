@@ -1,0 +1,135 @@
+<div class="modal">
+  <form method="post" name="newOrderForm">
+    <div class="modal-content">
+      <h4>New Order</h4>
+
+      <div class="row">
+
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.companyName.$invalid && newOrderForm.companyName.$dirty }">
+          <input class="validate" type="text" name="companyName" ng-model="vm.design.newOrder.companyName" required autofocus>
+          <label for="companyName">Company Name</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.companyName.$dirty" ng-messages="newOrderForm.companyName.$error">
+            <div ng-message="required">You must enter the business name.</div>
+          </div>
+        </input-field>
+
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.contact.$invalid && newOrderForm.contact.$dirty }">
+          <input class="validate" type="text" name="contact" ng-model="vm.design.newOrder.contact" required>
+          <label for="contact">Customer Name</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.contact.$dirty" ng-messages="newOrderForm.contact.$error">
+            <div ng-message="required">You must enter the client's name.</div>
+          </div>
+        </input-field>
+
+
+
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.telephone.$error.number }">
+          <input class="validate" ng-minlength="5" ng-maxlength="15" type="text" name="telephone" ng-model="vm.design.newOrder.telephone" required>
+          <label for="telephone">Company Tel</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.telephone.$dirty" ng-messages="newOrderForm.telephone.$error">
+            <div ng-message="required">You must enter the clients contact telephone.</div>
+            <div ng-message="number">You must enter a valid phone number.</div>
+            <div ng-message="minlength">The number must be more than 5 digits.</div>
+            <div ng-message="maxlength">The number must be less than 15 digits.</div>
+          </div>
+        </input-field>
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.email.$invalid && newOrderForm.email.$dirty }">
+          <input class="validate" type="email" name="email" ng-model="vm.design.newOrder.email" required>
+          <label for="email">Company Email</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.email.$dirty" ng-messages="newOrderForm.email.$error">
+            <div ng-message="required">You must enter the client's Email.</div>
+            <div ng-message="email">Email addresses must contain '@'.</div>
+          </div>
+        </input-field>
+
+
+
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.value.$invalid}">
+          <input class="validate" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" name="value" ng-model="vm.design.newOrder.value">
+          <label for="value">Order Value - optional</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.value.$dirty" ng-messages="newOrderForm.value.$error">
+            <div ng-message="required">You must enter the order value.</div>
+            <div ng-message="pattern">The order value must be a valid monetary amount.</div>
+            <div ng-message="number">The order value must be a valid monetary amount.</div>
+          </div>
+        </input-field>
+
+
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.profit.$invalid}">
+          <input class="validate" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" name="profit" ng-model="vm.design.newOrder.profit">
+          <label for="profit">Order Profit - optional</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.profit.$dirty" ng-messages="newOrderForm.profit.$error">
+            <div ng-message="required">You must enter the profit amount. (Estimate if unknown.)</div>
+            <div ng-message="pattern">The order profit must be a valid monetary amount.</div>
+            <div ng-message="number">The order profit must be a valid monetary amount.</div>
+          </div>
+        </input-field>
+
+
+        
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.designer.$invalid && newOrderForm.designer.$dirty }">
+          <select class="" ng-model="vm.design.newOrder.designer" ng-options="user.displayName as user.displayName for (key, user) in vm.design.users | filter:{department : 'Design'}" material-select watch>
+            <option value="">None</option>
+          </select>
+          <label for="designer">Designer - optional</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.designer.$dirty" ng-messages="newOrderForm.designer.$error">
+            <div ng-message="required">Assign a valid designer.</div>
+          </div>
+        </input-field>
+
+
+
+
+        <input-field class="col s6" ng-class="{ 'invalid' : newOrderForm.rep.$invalid && newOrderForm.rep.$dirty }">
+          <select class="" ng-model="vm.design.newOrder.rep" ng-options="user.displayName as user.displayName for (key, user) in vm.design.users | filter:{department : 'Sales'}" material-select watch>
+            <option value="">None</option>
+          </select>
+          <label for="rep">Rep - optional</label>
+          <span class="ion-person form-control-feedback"></span>
+          <div class="help-block text-danger" ng-if="newOrderForm.rep.$dirty" ng-messages="newOrderForm.rep.$error">
+            <div ng-message="required">Assign a valid Rep.</div>
+          </div>
+        </input-field>
+
+
+
+
+        <input-field class="col s6">
+          <label for="inputCreated">Sold Date</label>
+          <input input-date type="text" name="created" id="inputCreated" ng-model="vm.design.newOrder.soldDate" container="body" format="dd/mm/yyyy" months-full="{{ vm.design.month }}" months-short="{{ vm.design.monthShort }}" weekdays-full="{{ vm.design.weekdaysFull }}" weekdays-short="{{ vm.design.weekdaysShort }}" weekdays-letter="{{ vm.design.weekdaysLetter }}" today="vm.design.today" clear="vm.design.clear" close="vm.design.close" select-years="15" on-start="vm.design.onStart()" on-render="vm.design.onRender()" on-open="vm.design.onOpen()" on-close="vm.design.onClose()" on-set="vm.design.onSet()" on-stop="vm.design.onStop()" required />
+        </input-field>
+
+
+        <input-field class=" col s12">
+          <textarea id="comment" ng-model="vm.design.newOrder.comment" class="materialize-textarea"></textarea>
+          <label for="comment">Comment - optional</label>
+        </input-field>
+
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-large left red waves-effect waves-amber" ng-click="vm.callFunction();">
+        Cancel
+        <i class="material-icons right">backspace</i>
+      </button>
+      <button class="btn-large waves-effect waves-blue" ng-disabled="newOrderForm.$invalid"  ng-click="vm.design.createOrder()" name="action">
+        Create
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</div>

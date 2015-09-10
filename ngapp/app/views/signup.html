@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="center-form panel">
-      <div class="panel-body">
+    <div class="col s12 offset-m1 m10">
+      <div class="card-panel">
         <h2 class="text-center">Sign up</h2>
         <form method="post" ng-submit="signup.signup()" name="signupForm">
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
+          <div input-field class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }">
             <input class="form-control input-lg" type="text" name="displayName" ng-model="signup.displayName" placeholder="Name" required autofocus>
             <span class="ion-person form-control-feedback"></span>
             <div class="help-block text-danger" ng-if="signupForm.displayName.$dirty" ng-messages="signupForm.displayName.$error">
@@ -12,7 +12,25 @@
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
+          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.department.$invalid && signupForm.department.$dirty }">
+            
+            <select class="" name="department" required ng-model="signup.department" material-select watch>
+              <option >Sales</option>
+              <option >Management</option>
+              <option >Admin</option>
+              <option >Design</option>
+            </select>
+
+
+            <label for="icon_prefix">Department</label>
+            
+            <span class="ion-person form-control-feedback"></span>
+            <div class="help-block text-danger" ng-if="signupForm.department.$dirty" ng-messages="signupForm.department.$error">
+              <div ng-message="required">You must select a department.</div>
+            </div>
+          </div>
+
+          <div input-field class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
             <input class="form-control input-lg" type="email" id="email" name="email" ng-model="signup.email" placeholder="Email" required>
             <span class="ion-at form-control-feedback"></span>
             <div class="help-block text-danger" ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
@@ -21,7 +39,7 @@
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
+          <div input-field class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
             <input password-strength class="form-control input-lg" type="password" name="password" ng-model="signup.password" placeholder="Password" required>
             <span class="ion-key form-control-feedback"></span>
             <div class="help-block text-danger" ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
@@ -29,15 +47,13 @@
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
+          <div input-field class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
             <input password-match="signup.password" class="form-control input-lg" type="password" name="confirmPassword" ng-model="signup.confirmPassword" placeholder="Confirm Password">
             <span class="ion-key form-control-feedback"></span>
             <div class="help-block text-danger" ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
               <div ng-message="compareTo">Password must match.</div>
             </div>
           </div>
-
-          <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></small></p>
 
           <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Sign up</button>
           <br/>

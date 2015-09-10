@@ -8,7 +8,7 @@
  * Controller of the tweadsApp
  */
 angular.module('tweadsApp')
-  .controller('LoginCtrl', function ($scope, $auth) {
+  .controller('LoginCtrl', function ($scope, $auth, $window, $rootScope) {
     var vm = this;
     vm.login = function () {
       $auth.login({
@@ -16,31 +16,17 @@ angular.module('tweadsApp')
           password: vm.password
         })
         .then(function () {
-          console.log({
-            content: 'You have successfully logged in',
-            animation: 'fadeZoomFadeDown',
-            type: 'material',
-            duration: 3
-          });
+          $rootScope.authenticated = true;
+          $window.Materialize.toast('You have successfully logged in', 3000);
         })
         .catch(function (response) {
-          console.log({
-            content: response.data.message,
-            animation: 'fadeZoomFadeDown',
-            type: 'material',
-            duration: 3
-          });
+          $window.Materialize.toast(response.data.message, 3000);
         });
     };
     vm.authenticate = function (provider) {
       $auth.authenticate(provider)
         .then(function () {
-          console.log({
-            content: 'You have successfully logged in',
-            animation: 'fadeZoomFadeDown',
-            type: 'material',
-            duration: 3
-          });
+          $window.Materialize.toast('You have successfully logged in', 3000);
         })
         .catch(function (response) {
           console.log(response);

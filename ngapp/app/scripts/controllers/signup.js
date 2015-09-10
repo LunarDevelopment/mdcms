@@ -14,6 +14,7 @@ angular.module('tweadsApp')
       $auth.signup({
         displayName: vm.displayName,
         email: vm.email,
+        department: vm.department,
         password: vm.password
       }).catch(function(response) {
         if (typeof response.data.message === 'object') {

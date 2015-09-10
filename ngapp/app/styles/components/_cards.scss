@@ -11,7 +11,7 @@
 
 .card {
   position: relative;
-  overflow: hidden;
+  overflow: $card-overflow;
   margin: $element-top-margin 0 $element-bottom-margin 0;
   background-color: $card-bg-color;
   transition: box-shadow .25s;
@@ -20,6 +20,7 @@
 
 
   .card-title {
+    //height: $card-title-height;
     color: $card-bg-color;
     font-size: 24px;
     font-weight: 300;

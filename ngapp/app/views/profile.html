@@ -1,55 +1,34 @@
 <div class="section">
   <div class="row">
-    <div class="col offset-l1 l10 s12">
-      <div class="card-panel">
-        <h5 ng-show="profile.authenticated">Welcome, {{profile.currentUser.name}}</h5>
-        <h3>Users</h3>
-        <div class="buttons" style="margin-bottom: 10px">
-          <button class="btn btn-primary" ng-click="profile.dump()">Dump</button>
-          <button class="btn btn-primary" ng-click="profile.user.getUsers()">Get Users!</button>
-          <button class="btn btn-danger" ng-click="profile.user.logout()">Logout</button>
-        </div>
-        <div class="alert alert-danger" ng-if="profile.user.error">
-          <strong>There was an error: </strong> {{profile.user.error.error}}
-          <br>Please go back and login again
-        </div>
-      </div>
-      <ul class="collapsible" ng-if="profile.user.users" data-collapsible="accordion" watch>
-        <li ng-repeat="user in profile.user.users">
-          <div class="collapsible-header collection-item">
-            <i class="material-icons">person_pin</i> {{profile.user.name}}
-          </div>
-          <div class="collapsible-body">
-            <p>
-              <span class="blue-text">Email: </span> {{profile.user.email}}
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="row">
     <div class="col s12 m6">
-      <div class="card blue-grey lighten-4">
+      <div class="card blue-grey lighten-7">
         <form method="post" ng-submit="profile.updateProfile()">
           <div class="card-content white-text">
             <span class="card-title">Profile</span>
+            <!--
             <div class="form-group">
               <label class="control-label">Profile Picture</label>
-              <img class="profile-picture" ng-src="{{profile.user.picture || 'http://placehold.it/100x100'}}">
+<img class="profile-picture" ng-src="{{profile.editUser.picture || 'http://placehold.it/100x100'}}">
             </div>
+            -->
             <input-field>
               <i class="material-icons prefix">perm_identity</i>
-              <input required ng-minlength="1" ng-maxlength="120" length="120" type="text" ng-model="profile.user.displayName" />
+              <input required ng-minlength="1" ng-maxlength="120" length="120" type="text" ng-model="profile.editUser.displayName" />
               <label for="icon_prefix">Display Name</label>
+            </input-field>
+            
+            <input-field>              
+              <select class="" name="department" required ng-model="profile.editUser.department" material-select watch>
+                <option >Sales</option>
+                <option >Management</option>
+                <option >Admin</option>
+                <option >Design</option>
+              </select>
             </input-field>
             
             <input-field>
               <i class="material-icons prefix">email</i>
-              <input required ng-minlength="1" ng-maxlength="320" length="320" type="email"  ng-model="profile.user.email" />
+              <input required ng-minlength="1" ng-maxlength="320" length="320" type="email"  ng-model="profile.editUser.email" />
               <label for="icon_prefix">Email Address</label>
             </input-field>
           </div>
@@ -59,9 +38,14 @@
         </form>
       </div>
     </div>
+    <div class="col s12 m6">
+      <div class="card blue-grey lighten-7">
+        
+      </div>
+    </div>
   </div>
 </div>
-
+<!--
 <div class="section">
   <div class="row">
     <div class="col s12 m6">
@@ -69,60 +53,60 @@
         <div class="card-content white-text">
           <span class="card-title">Linked Accounts</span>
             
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.facebook" ng-click="profile.unlink('facebook')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.facebook" ng-click="profile.unlink('facebook')">
                 <i class="ion-social-facebook"></i> Unlink Facebook Account
               </button>
             
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.facebook" ng-click="profile.link('facebook')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.facebook" ng-click="profile.link('facebook')">
                 <i class="ion-social-facebook"></i> Link Facebook Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.google" ng-click="profile.unlink('google')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.google" ng-click="profile.unlink('google')">
                 <i class="ion-social-googleplus"></i> Unlink Google Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.google" ng-click="profile.link('google')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.google" ng-click="profile.link('google')">
                 <i class="ion-social-googleplus"></i> Link Google Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.linkedin" ng-click="profile.unlink('linkedin')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.linkedin" ng-click="profile.unlink('linkedin')">
                 <i class="ion-social-linkedin"></i> Unlink LinkedIn Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.linkedin" ng-click="profile.link('linkedin')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.linkedin" ng-click="profile.link('linkedin')">
                 <i class="ion-social-linkedin"></i> Link LinkedIn Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.twitter" ng-click="profile.unlink('twitter')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.twitter" ng-click="profile.unlink('twitter')">
                 <i class="ion-social-twitter"></i> Unlink Twitter Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.twitter" ng-click="profile.link('twitter')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.twitter" ng-click="profile.link('twitter')">
                 <i class="ion-social-twitter"></i> Link Twitter Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.github" ng-click="profile.unlink('github')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.github" ng-click="profile.unlink('github')">
                 <i class="ion-social-github"></i> Unlink GitHub Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.github" ng-click="profile.link('github')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.github" ng-click="profile.link('github')">
                 <i class="ion-social-github"></i> Link GitHub Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.foursquare" ng-click="profile.unlink('foursquare')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.foursquare" ng-click="profile.unlink('foursquare')">
                 <i class="ion-social-foursquare"></i> Unlink Foursquare Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.foursquare" ng-click="profile.link('foursquare')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.foursquare" ng-click="profile.link('foursquare')">
                 <i class="ion-social-foursquare"></i> Link Foursquare Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.yahoo" ng-click="profile.unlink('yahoo')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.yahoo" ng-click="profile.unlink('yahoo')">
                 <i class="ion-social-yahoo"></i> Unlink Yahoo Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.yahoo" ng-click="profile.link('yahoo')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.yahoo" ng-click="profile.link('yahoo')">
                 <i class="ion-social-yahoo"></i> Link Yahoo Account
               </button>
 
-            <button class="waves-effect waves-light btn purple" ng-if="profile.user.live" ng-click="profile.unlink('live')">
+<button class="waves-effect waves-light btn purple" ng-if="profile.editUser.live" ng-click="profile.unlink('live')">
                 <i class="ion-social-windows"></i> Unlink Windows Live Account
               </button>
-            <button class="waves-effect waves-light btn teal" ng-if="!profile.user.live" ng-click="profile.link('live')">
+<button class="waves-effect waves-light btn teal" ng-if="!profile.editUser.live" ng-click="profile.link('live')">
                 <i class="ion-social-windows"></i> Link Windows Live Account
               </button>
             
@@ -134,4 +118,4 @@
     </div>
   </div>
 </div>
-
+-->

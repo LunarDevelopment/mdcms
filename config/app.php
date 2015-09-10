@@ -215,7 +215,7 @@ return [
 		'Storage'   => 'Illuminate\Support\Facades\Storage',
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
-		'View'      => 'Illuminate\Support\Facades\View',
+        'View'      => 'Illuminate\Support\Facades\View',
 
 	],
 

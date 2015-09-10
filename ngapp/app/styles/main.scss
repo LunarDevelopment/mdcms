@@ -9,6 +9,54 @@
   padding: 0.2em 0;
 }
 
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+
+
+/*
+When creating your CSS selector,
+change "brown" to something of your choosing
+*/
+.waves-effect.waves-cyan .waves-ripple {
+  /* The alpha value allows the text and background color
+  of the button to still show through. */
+  background-color: rgba(0, 188, 212, 0.65);
+}
+
+/*
+When creating your CSS selector,
+change "brown" to something of your choosing
+*/
+.waves-effect.waves-indigo .waves-ripple {
+  /* The alpha value allows the text and background color
+  of the button to still show through. */
+  background-color: rgba(63, 81, 181, 0.65);
+}
+
+/*
+When creating your CSS selector,
+change "brown" to something of your choosing
+*/
+.waves-effect.waves-blue .waves-ripple {
+  /* The alpha value allows the text and background color
+  of the button to still show through. */
+  background-color: rgba(33, 150, 243, 0.65);
+}
+
+
+.loading-dialog {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba( 0, 0, 0, .2 ) url('../images/yeoman.png') 50% 50% no-repeat;
+}
+
 /* Let's get this party started */
 ::-webkit-scrollbar {
   width: 12px;
@@ -19,7 +67,7 @@
   -webkit-background: solid 1px rgba(34, 34, 34, 0); 
   background: solid 1px rgba(34, 34, 34, 0)
 }
-
+ 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: color("light-blue", "darken-1"); 
@@ -49,7 +97,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  background-image: url('../images/banner.jpg');
+  background-image: url('../images/');
 }
 .brand-logo {
   max-height: 100%;
@@ -61,28 +109,34 @@
   max-height: 200px;
   overflow: auto;
 }
-nav {
-  animation: colorchange 50s; /* animation-name followed by duration in seconds*/
-  /* you could also use milliseconds (ms) or something like 2.5s */
-  -webkit-animation: colorchange 50s; /* Chrome and Safari */
-  -webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
-  animation-iteration-count: infinite;
+.dashboard-container {
+  height: 100%;
+  ul {
+    margin-top: 100px; 
+    //width: 220px;
+  }
+  li a{
+    width: 100%; 
+    height: 70px;
+    display: block;
+    padding: 0 15px;
+    color: #444;
+    height: 44px !important;
+    line-height: 44px !important;
+  }
 }
- 
-@keyframes colorchange
-{
-  0%   {background: color("light-blue", "darken-1");}
-  25%  {background: color("purple", "lighten-1");}
-  50%  {background: color("pink", "darken-1");}
-  75%  {background: color("indego", "lighten-1");}
-  100% {background: color("light-blue", "darken-1");}
+.mailto {
+  width: 100%;
 }
-
-@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-{
-  0%   {background: color("light-blue", "darken-1");}
-  25%  {background: color("purple", "lighten-1");}
-  50%  {background: color("pink", "darken-1");}
-  75%  {background: color("indego", "lighten-1");}
-  100% {background: color("light-blue", "darken-1");}
+.card-title-custom {
+  .row {
+    margin-bottom: 0px !important;
+  }
+  font-size: 13px !important;
+  padding: 12px 0px 0px 5px;
+}
+.design-card {
+  .card-content {
+    min-height: 200px
+  }
 }

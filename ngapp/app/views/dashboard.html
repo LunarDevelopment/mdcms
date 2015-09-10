@@ -1,98 +1,255 @@
+<!-- floating action button -->
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip">
+    <i class="material-icons">keyboard_arrow_up</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="material-icons">insert_chart</i></a>
+    </li>
+    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="material-icons">format_quote</i></a>
+    </li>
+    <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Create Order" ng-click="dashboard.design.new();" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="material-icons">add</i></a>
+    </li>
+    <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="material-icons">mode_edit</i></a>
+    </li>
+  </ul>
+</div>
+
+
 <div class="section">
+
   <div class="row">
-    <div class="col l11 s12">
-      <div class="card-panel">
-        <h4 class="grey-text darken-2 light">Give It Try</h4>
-        <div class="row">
-          <form name="exampleSearchForm">
-            <input-field class="col s12 m7">
-              <i class="material-icons prefix">search</i>
-              <input name="searchTerm" required ng-minlength="1" ng-maxlength="120" ng-model="dashboard.twitter.q" type="text" class="validate">
-              <label for="icon_prefix"></label>
-            </input-field>
-            <div class="col s12 m5">
-              <button ng-disabled="exampleSearchForm.$invalid || exampleSearchForm.$pending" ng-click="dashboard.twitter.searchTweets()" class="btn-large purple waves-effect waves-light">
-                <span>Search</span>
-              </button>
-            </div>
-          </form>
-          <h1>{{dashboard.twitter.outreaches}}</h1>
-          <form name="exampleTweet">
-            <input-field class="col s12 m7">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea required ng-minlength="1" ng-maxlength="120" length="120" id="exampleTweet" ng-model="dashboard.twitter.status" ng-change="" type="text" placeholder="Hey I'm Lewis from Tweads.com, Can I have a chat with you about how you currently market?" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Message</label>
-            </input-field>
-            <div class="col s12 m5">
-              <button ng-disabled="exampleTweet.$invalid || exampleTweet.$pending" ng-click="dashboard.twitter.tweet()" class="btn-large blue waves-effect waves-light">
-                <span>Tweet</span>
-              </button>
-            </div>
-          </form>
-        </div>
+    <!-- Page Content -->
+    <div class="col m4 l2 hide-on-small-only z-depth-1 dashboard-container" pushpin pushpin-top="0" pushpin-offset="0" pushpin-bottom="Infinity">
+      <ul class="">
+        <li class="bold">
+          <input-field>
+            <input id="icon_prefix" type="text" ng-model="dashboard.search.$" class="validate">
+            <label for="icon_prefix">Search</label>
+          </input-field>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.design.new();" class="btn-flat waves-effect waves-purple"> Create Order <i class="material-icons deep-purple-text right">add</i> </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: ''}" class="btn-flat waves-effect waves-orange"> Clear   <i class="material-icons deep-orange-text right">remove</i> </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.design.sendEmailReminder();" class="btn-flat waves-effect waves-orange"> sendEmailReminder   <i class="material-icons deep-orange-text right">remove</i> </a>
+        </li>
+        <li class="bold">
+          <a ng-show="$storage.user.department === 'Management'" ng-click="dashboard.search = {createdBy: $storage.user.displayName}" class="btn-flat waves-effect waves-teal"> My Team </a>
+          <a ng-show="$storage.user.department === 'Admin'" ng-click="dashboard.search = {createdBy: $storage.user.displayName}" class="btn-flat waves-effect waves-teal"> Show Mine </a>
+          <a ng-show="$storage.user.department === 'Sales'" ng-click="dashboard.search = {rep: $storage.user.displayName}" class="btn-flat waves-effect waves-teal">   My Sales </a>
+          <a ng-show="$storage.user.department === 'Design'" ng-click="dashboard.search = {designer: $storage.user.displayName}" class="btn-flat waves-effect waves-teal">  My Designs </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'Not Started'}" class="btn-flat waves-effect waves-orange">
+            Not Started 
+            <i class="material-icons deep-orange-text lighten-5 right">info</i>
+          </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'Allocated'}" class="btn-flat waves-effect waves-purple"> 
+            Allocated 
+            <i class="material-icons deep-purple-text lighten-5 right">info</i>
+          </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'Collateral Recieved'}" class="btn-flat waves-effect waves-indigo">  
+            Collateral Recieved  
+            <i class="material-icons indigo-text  lighten-5 right">info</i>
+          </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'First Draft'}" class="btn-flat waves-effect waves-blue">   
+            First Draft  
+            <i class="material-icons blue-text lighten-5 right">info</i>
+          </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'Amends'}" class="btn-flat waves-effect waves-cyan">    
+            Amends  
+            <i class="material-icons cyan-text lighten-5 right">info</i>
+          </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'Signed Off'}" class="btn-flat waves-effect waves-green"> 
+            Signed Off 
+            <i class="material-icons green-text lighten-5 right">info</i>
+          </a>
+        </li>
+        <li class="bold">
+          <a ng-click="dashboard.search = {status: 'Hurried'}" class="btn-flat waves-effect waves-red">
+            Hurried  
+            <i class="material-icons red-text lighten-5 right">info</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col offset-m4 offset-l2 s12 m8 l10">
+      
+      <table class="bordered responsive-table">
+        <thead>
+          <tr>
+         <!--   
+            comment
+            companyName
+            contact
+            createdBy
+            created_at
+            deleted_at
+            designer
+            email
+            firstDraftDate
+            id
+            profit
+            redraftDate
+            soldDate
+            status
+            telephone
+            updated_at
+            value
+            -->
+            
+            <th data-field="companyName"> Company </th>
+            <th data-field="contact"> Client </th>
+            <th data-field="credits"> Credits </th>
+            <th data-field="comment"> Comment </th>
+            <th data-field="createdBy"> Created By </th>
+            <th data-field="rep"> Rep </th>
+            <th data-field="designer"> Designer </th>
+            <th data-field="updated_at"> Last Action </th>
+            <th data-field="telephone"> Tel </th>
+            <th data-field="value"> Value </th>
+            <th data-field="status"> Status </th>
+            <th data-field="edit"> Edit </th>
+            <th data-field="email"> Email </th>
+            <th data-field="created_at"> Created </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="design in dashboard.design.designs | orderBy:'created_at':true | filter:dashboard.search" ng-class="[
+                                                                                                 {'deep-orange lighten-5': design.status === 'Not Started'}, 
+                                                                                                 {'deep-purple lighten-5': design.status === 'Allocated'}, 
+                                                                                                 {'indigo  lighten-5': design.status === 'Collateral Recieved'}, 
+                                                                                                 {'blue lighten-5': design.status === 'First Draft'}, 
+                                                                                                 {'cyan lighten-5': design.status === 'Amends'}, 
+                                                                                                 {'green lighten-5': design.status === 'Signed Off'}, 
+                                                                                                 {'red lighten-5': design.status === 'Hurried'}
+                                                                                                 ]">
+            <td>{{design.companyName || 'NA'}}</td>
+            <td>{{design.contact || 'No Contact'}}</td>
+            <td>   
+              <select ng-change="dashboard.design.statusChange(design)" class="browser-default"  ng-model="design.credits">
+                <option val="0">0</option>
+                <option val="1">1</option>
+                <option val="2">2</option>
+                <option val="3">3</option>
+                <option val="4">4</option>
+                <option val="5">5</option>
+                <option val="6">6</option>
+                <option val="7">7</option>
+              </select>
+            </td>
+            <td>{{design.comment || 'NA'}}</td>
+            <td>{{design.createdBy || 'NA'}}</td>
+            <td>{{design.rep || 'No Rep'}}</td>
+            <td>{{design.designer || 'No Designer'}}</td>
+            <td>{{design.updated_at | timestampToISO | date:'mediumDate'}}</td>
+            <td>{{design.telephone || 'NA'}}</td>
+            <td>£{{design.value || '00.00'}}</td>
+            <td>        
+              <select ng-change="dashboard.design.statusChange(design)" class="browser-default" ng-options="choice as choice for choice in dashboard.design.statusChoices" ng-model="design.status">
+              </select>
+            </td>
+            <td>
+            <a class="mailto btn btn-flat waves-effect waves-yellow" ng-click="dashboard.design.edit(design)">Edit</a>
+            </td>
+            <td>
+              <mailto email="design.email"></mailto>
+            </td>
+            <td>{{design.created_at  | timestampToISO | date:'mediumDate'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--  CARDS! --> 
+<!--
+<div class="section">
+
+  <div class="row">
+<div class="col offset-m4 offset-l2 s12 m8 l10">
+  <div ng-repeat="design in dashboard.design.designs | filter:dashboard.search" class="col s12 m6 l3">
+    <div class="card design-card" ng-class="[
+                                            {'deep-orange lighten-5': design.status === 'Not Started'}, 
+                                            {'deep-purple lighten-5': design.status === 'Allocated'}, 
+                                            {'indigo  lighten-5': design.status === 'Collateral Recieved'}, 
+                                            {'blue lighten-5': design.status === 'First Draft'}, 
+                                            {'cyan lighten-5': design.status === 'Amends'}, 
+                                            {'green lighten-5': design.status === 'Signed Off'}, 
+                                            {'red lighten-5': design.status === 'Hurried'}
+                                            ]">
+      <div class="card-content no-padding">
+        <span class="card-title card-title-custom truncate activator grey-text text-darken-4">
+          <span  class="col s10 truncate">{{design.companyName}} 
+            <small>
+              {{design.id}}
+            </small>
+          </span>
+          <i class="material-icons right">more_vert</i>
+        </span>
+        <ul class="collection no-padding">
+          <li class="collection-item">Rep: {{design.createdBy || 'No Rep'}}</li>
+          <li class="collection-item">
+            <i ng-click="design.credits = design.credits - 1" class="material-icons left">remove</i>
+            Credits: {{design.credits}}
+            <i ng-click="design.credits = design.credits + 1" class="material-icons right">add</i>
+          </li>
+          <li class="collection-item">
+            <i ng-click="design.amendments = design.amendments - 1" class="material-icons left">remove</i>
+            Amendments: {{design.amendments}}
+            <i ng-click="design.amendments = design.amendments + 1" class="material-icons right">add</i>
+          </li>
+          <li class="collection-item">Contact: {{design.contact || 'No Contact'}}</li>
+          <li class="collection-item">Designer: {{design.designer || 'No Designer'}}</li>
+          <li class="collection-item">Tel: {{design.telephone || 'No Tel'}}</li>
+        </ul>
+
+        <a class="mailto btn btn-flat waves-effect waves-yellow" ng-click="dashboard.design.edit(design)">Edit</a>
+        <mailto email="design.email"></mailto>
       </div>
-      <div class="card-panel">
-        <div class="row">
-          <div class="col s12">
-            <ul ng-show="dashboard.twitter.tweets.length" class="collection">
-              <li ng-repeat="tweet in dashboard.twitter.tweets track by $index" ng-style="dashboard.getUserClass(tweet.user.profile_sidebar_fill_color)" class="collection-item avatar" ng-class="tweet.classes">
-                <img ng-src="{{tweet.user.profile_image_url}}" alt="" class="circle">
-                <span class="blue-text text-darken-2 title">
-                  {{tweet.user.name}} 
-                  <small>@{{tweet.user.screen_name}}</small>
-                </span>
-                <p>
-                  {{tweet.text}}
-                </p>
-                <div class="secondary-content">
-                  <a ng-click="dashboard.moreInfo(tweet)" class=" waves-effect waves-light pink-text ">
-                    <i class="material-icons">info</i>
-                  </a>
-                  <a ng-click="dashboard.twitter.retweet(tweet.id_str)" ng-class="{ 'green-text': tweet.retweeted}" class=" waves-effect waves-light ">
-                    <i class="material-icons">autorenew</i>
-                  </a>
-                  <a ng-click="dashboard.twitter.favourite(tweet.id_str)" ng-class="{ 'amber-text': tweet.favourited}" class=" waves-effect waves-light ">
-                    <i class="material-icons">star</i>
-                  </a>
-                  <a ng-click="dashboard.twitter.followUser(tweet.screen_name)" ng-class="{ 'blue-text': tweet.user.following}" class=" waves-effect waves-light ">
-                    <i class="material-icons">person_add</i>
-                  </a>
-                  <button ng-disabled="tweet.disabled" class="waves-effect waves-light purple btn" ng-click="dashboard.step3(tweet)">
-                    <i class="material-icons">send</i>
-                  </button>
-                </div>
-              </li>
-            </ul>
-            <!-- Accordion cards, problem that secondary-content isn't reliable in the headers -->
-            <!-- could go for user info + send button + outreach count in accordion body -->
-            <!--
-<ul ng-show="dashboard.twitter.tweets.length" 
-class="collapsible popout" 
-data-collapsible="accordion" 
-watch>
-<li ng-repeat="tweet in dashboard.twitter.tweets track by $index">
-<div class="collapsible-header waves-effect waves-purple">
-{{tweet.text}}
-<a href="" class="secondary-content btn waves-effect waves-teal">
-<i class="material-icons">send</i>
-</a>
-</div>
-<div class="collapsible-body">
-<p>@{{tweet.user.screen_name}}</p>
-<p>{{tweet.user.name}}</p>
-<a href="" class="btn waves-effect waves-teal">
-<i class="material-icons">send</i>
-</a>
-</div>
-</li>
-</ul>
--->
-            <div ng-hide="dashboard.twitter.tweets.length" class="no-results">
-              <p>Nothing to show..</p>
-            </div>
-          </div>
-        </div>
+      <div class="card-reveal no-padding">
+        <span class="card-title card-title-custom  truncate grey-text text-darken-4">
+          JOB NAME
+          <i class="material-icons right">close</i>
+        </span>
+        <ul class="collection no-padding">
+          <li class="collection-item">
+            {{design.comment || 'No Comment' }}
+          </li>
+          <li class="collection-item">
+            Draft: {{design.firstDraftDate | date:'mediumDate' || 'NA'}}
+          </li>
+          <li class="collection-item">
+            Redraft: {{design.redraftDate | date:'mediumDate' || 'NA'}}
+          </li>
+          <li class="collection-item">
+            Order: £{{design.value || '00.00' }}
+          </li>
+          <li class="collection-item">
+            Profit: £{{design.profit || '00.00' }}
+          </li>
+        </ul>
+        <a class="mailto btn btn-flat waves-effect waves-red" ng-really-message="Really Delete this order?" ng-really-click="dashboard.design.deleteOrder(design)">Delete</a>
       </div>
     </div>
   </div>
 </div>
+  </div>
+</div>
+-->

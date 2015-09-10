@@ -1,28 +1,7 @@
-<div class="row">
-  <div class="col s12 offset-m3 m6">
-    <div class="card-panel">
-      <h3>Login</h3>
-      <form>
-        <div class="form-group input-field">
-          <input id="email" type="email" class="form-control validate" ng-model="login.auth.email">
-          <label for="email">Email</label>
-        </div>
-        <div class="form-group input-field">
-          <input id="password" type="text" class="form-control validate" ng-model="login.auth.password" length="30">
-          <label for="password">Password</label>
-        </div>
-        <button class="btn-large pink accent-1 waves-effect waves-light" ng-click="login.auth.forgotten()">I Forgot..</button>
-        <button class="right btn-large green lighten-1 waves-effect waves-light" ng-click="login.auth.login()">Submit</button>
-      </form>
-
-    </div>
-  </div>
-</div>
-
 <div class="container">
   <div class="row">
-    <div class="center-form panel">
-      <div class="panel-body">
+    <div class="col s12 offset-m3 m6">
+      <div class="card-panel">
         <h2 class="text-center">Log in</h2>
         <form method="post" ng-submit="login.login()" name="loginForm">
           <div class="form-group has-feedback">
@@ -38,21 +17,17 @@
           <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-lg  btn-block btn-success">Log in</button>
 
           <br/>
-
+          <!--
           <p class="text-center">
             <a href="#">Forgot your password?</a>
           </p>
-
+          -->
           <p class="text-center text-muted">
             <small>Don't have an account yet? <a href="/#/signup">Sign up</a></small>
           </p>
 
-          <div class="signup-or-separator">
-            <h6 class="text">or</h6>
-            <hr>
-          </div>
         </form>
-
+        <!--
         <button class="btn btn-block btn-facebook" ng-click="login.authenticate('facebook')">
           <i class="ion-social-facebook"></i> Sign in with Facebook
         </button>
@@ -77,6 +52,7 @@
         <button class="btn btn-block btn-live" ng-click="login.authenticate('live')">
           <i class="ion-social-windows"></i> Sign in with Windows Live
         </button>
+        -->
       </div>
     </div>
   </div>

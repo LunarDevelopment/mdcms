@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('email')->nullable();
 			$table->string('password')->nullable();
+			$table->string('department')->nullable();
 			$table->string('displayName')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('foursquare')->nullable();
@@ -28,6 +29,7 @@ class CreateUsersTable extends Migration {
 			#$table->string('twitterConsumerSecret')->nullable();
 			$table->string('oauthToken')->nullable();
             $table->string('oauthVerifier')->nullable();
+            $table->softDeletes();
 			$table->timestamps();
 		});
 	}

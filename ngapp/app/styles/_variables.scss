@@ -24,6 +24,8 @@ $button-large-icon-font-size: 1.6rem !default;
 $button-line-height: 36px !default;
 
 /*** Cards ***/
+$card-title-height: 80px !important;
+$card-overflow: hidden;
 $card-padding: 20px !default;
 $card-bg-color: #fff !default;
 $card-link-color: color("orange", "accent-2") !default;

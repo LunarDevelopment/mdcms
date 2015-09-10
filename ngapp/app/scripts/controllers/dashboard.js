@@ -8,14 +8,11 @@
  * Controller of the tweadsApp
  */
 angular.module('tweadsApp')
-  .controller('DashboardCtrl', function (Twitter, $window) {
+  .controller('DashboardCtrl', function (Design, $window) {
     var vm = this;
-    vm.exampleToast = {
-      duration: 1000,
-      message: 'You reached out!'
-    };
-    vm.twitter = Twitter;
-    vm.tweets = null;
+    vm.design = Design;
+    vm.design.getOrders();
+    vm.design.getUsers();
     vm.getUserClass = function (val) {
       return {
         'border-left': 'solid 2px',

@@ -39,11 +39,20 @@ class UserController extends Controller {
         $user = User::find($request['user']['sub']);
 
         $user->displayName = $request->input('displayName');
+        $user->department = $request->input('department');
         $user->email = $request->input('email');
         $user->save();
 
         $token = $this->createToken($user);
 
         return response()->json(['token' => $token]);
+    }
+    /**
+     * Get all registered users
+     */
+    public function getUsers(Request $request)
+    {
+      $users = User::all();
+      return response()->json(['users' => $users]);
     }
 }
