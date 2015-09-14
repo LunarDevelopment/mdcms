@@ -24,6 +24,7 @@ angular
     'ngStorage'
   ])
   .config(function ($routeProvider, $authProvider, $httpProvider, $provide) {
+
     function redirectWhenLoggedOut($q, $injector) {
         return {
           responseError: function (rejection) {
